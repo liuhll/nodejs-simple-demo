@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -36,27 +35,6 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-=======
-
-config.js
-.cov
-coverage
-node_modules
-.naeindex
-coverage.html
-.monitor
-
-*.min.*.js
-*.min.*.css
-assets.json
-
-# Ignore Mac OS desktop services store
-.DS_Store
-
-# Ignore Windows desktop setting file
-desktop.ini
-
-*.log
 
 .idea
 public/upload/*
@@ -65,4 +43,4 @@ public/assets/*
 *.sublime-project
 *.sublime-workspace
 *.swp
->>>>>>> a1884a4... Init Commit
+

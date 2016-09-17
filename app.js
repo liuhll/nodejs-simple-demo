@@ -1,19 +1,33 @@
-var path = require('path');
-var favicon = require('serve-favicon');
+// app.js文件
+
 var express = require('express');
 var app = express();
+ 
+var hbs = require('hbs');
 
-app.set('port',process.env.PORT || 8081);
-app.set('views',path.join(__dirname,'views'));
-app.set('view engine','jade');
+app.use(express.static('public'));
 
-app.use(express.favicon());
-app.use(express.logger('dev'));
+// 加载数据模块
+var blogEngine = require('./models/blog');
+ 
+app.set('view engine', 'html');
+app.engine('html', hbs.__express);
 app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
 
-//设定静态文件目录，比如本地文件
-app.use(express.static(path.join(__dirname,'public')));
+app.get('/', function(req, res) {
+   res.render('index',{title:"最近文章", entries:blogEngine.getBlogEntries()});
+});
+//  var home = require("./routes/index");
+//  app.use('/',home);
 
-app.listen(app.get('port'));
+app.get('/about', function(req, res) {
+   res.render('about', {title:"自我介绍"});
+});
+ 
+app.get('/article/:id', function(req, res) {
+   var entry = blogEngine.getBlogEntry(req.params.id);
+   res.render('article',{title:entry.title, blog:entry});
+});
+ 
+ 
+app.listen(8081);

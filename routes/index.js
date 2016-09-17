@@ -1,11 +1,12 @@
-module.exports = function (app) {
-  app.get('/',function (req,res) {
-    res.send('Hello world');
+var express = require('express');
+var router = express.Router();
+
+router.get('/', function(req, res) {
+  res.send('首页');
 });
-  app.get('/customer', function(req, res){
-    res.send('customer page');
-  });
-  app.get('/admin', function(req, res){
-    res.send('admin page');
-  });
-}
+
+router.get('/about', function(req, res) {
+  res.send('关于');
+});
+
+module.exports = router;
